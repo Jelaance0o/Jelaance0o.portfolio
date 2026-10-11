@@ -1,0 +1,25 @@
+:root {
+  --bg: #0a0a0a;
+  --fg: #f2f0ea;
+  --mut: #8a8a85;
+  --line: #262626;
+  --acc: #c8ff3d;
+  --pad: clamp(20px, 4vw, 64px);
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  background: var(--bg);
+}
+html,
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
