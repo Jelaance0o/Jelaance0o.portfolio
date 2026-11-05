@@ -1,7 +1,13 @@
+import Hero from "../sections/Hero"
+import Navigation from "../components/Navigation"
+
+
 const Home = () => {
   return (
     <div>
       
+      <Navigation/>
+      <Hero />
     </div>
   )
 }
