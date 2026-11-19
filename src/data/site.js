@@ -1,0 +1,3 @@
+// Place the PDF at client/public/resume/ — it is served from /resume/...
+export const resumeUrl = "/resume/Jeelance-Roy-Resume.pdf";
+export const site = { name: "Jeelance Roy", role: "Software Engineer", location: "Jabalpur, India" };
