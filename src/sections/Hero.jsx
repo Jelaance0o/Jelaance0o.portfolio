@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="hero__shape" aria-hidden="true"><FloatingElement amp={8} rot={1.5} speed={0.7}><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" /><rect x="40" y="40" width="120" height="120" /><path d="M20 180 180 20" /></svg></FloatingElement></div>
       <div>
         <p className="label" data-hero="meta">JELAANCE0O — Software Engineer · Frontend / Full-Stack Developer</p>
-        <p className="hero__name" data-hero="brand">JEELANCE ROY</p>
+        <p className="hero__name" data-hero="brand">JELAANCE ROY</p>
       </div>
       <h1 aria-label="Creating impact.">{L.map((w) => <span className="hero__line" key={w} aria-hidden="true"><span>{w}</span></span>)}</h1>
       <div className="hero__foot">
