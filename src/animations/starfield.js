@@ -5,6 +5,7 @@ import { isTouch, prefersReduced } from "../hooks/useReducedMotion";
 export function startStarfield(canvas) {
   const ctx = canvas.getContext("2d"), reduced = prefersReduced(), touch = isTouch();
   const R = touch ? 110 : 190, PUSH = touch ? 26 : 46, m = { x: -9999, y: -9999 };
+  const sparks = [];
   let w = 0, h = 0, stars = [], t, burst = 0, bx = 0, by = 0, lastY = scrollY, vel = 0;
   const init = () => {
     const dpr = Math.min(devicePixelRatio || 1, touch ? 1 : 1.5);
@@ -36,13 +37,20 @@ export function startStarfield(canvas) {
       const st = Math.min(Math.abs(vel) * s.d * 0.5, 14); // streak with scroll speed
       if (st > 1.5) ctx.fillRect(px - s.r, py - s.r, s.r * 2, s.r * 2 + st); else { ctx.beginPath(); ctx.arc(px, py, s.r, 0, 6.2832); ctx.fill(); }
     }
+    for (let i = sparks.length - 1; i >= 0; i--) { // star-burst particles (fired from the hero shape)
+      const p = sparks[i]; p.x += p.vx; p.y += p.vy; p.vx *= 0.95; p.vy *= 0.95; p.life -= 0.014;
+      if (p.life <= 0) { sparks.splice(i, 1); continue; }
+      ctx.globalAlpha = p.life; ctx.fillStyle = p.c; ctx.beginPath(); ctx.arc(p.x, p.y, p.r * (0.5 + p.life * 0.5), 0, 6.2832); ctx.fill();
+    }
+    ctx.fillStyle = "#fff";
     burst *= 0.93;
   };
   const mv = (e) => { m.x = e.clientX; m.y = e.clientY; }, lv = () => { m.x = m.y = -9999; };
   const dn = (e) => { m.x = bx = e.clientX; m.y = by = e.clientY; burst = touch ? 0.8 : 1; };
+  const sb = (e) => { const n = touch ? 18 : 32; for (let i = 0; i < n; i++) { const a = Math.random() * 6.2832, sp = 2 + Math.random() * 5; sparks.push({ x: e.detail.x, y: e.detail.y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, life: 1, r: 0.8 + Math.random() * 1.6, c: Math.random() < 0.35 ? "#c8ff3d" : "#fff" }); } };
   const rs = () => { clearTimeout(t); t = setTimeout(init, 150); };
   init(); window.addEventListener("resize", rs);
   const ev = [["pointermove", mv, { passive: true }], ["pointerdown", dn, { passive: true }], ["pointerup", lv], ["pointercancel", lv]];
-  if (!reduced) { gsap.ticker.add(draw); ev.forEach(([n, f, o]) => window.addEventListener(n, f, o)); document.documentElement.addEventListener("mouseleave", lv); }
-  return () => { clearTimeout(t); gsap.ticker.remove(draw); window.removeEventListener("resize", rs); ev.forEach(([n, f]) => window.removeEventListener(n, f)); document.documentElement.removeEventListener("mouseleave", lv); };
+  if (!reduced) { gsap.ticker.add(draw); window.addEventListener("starburst", sb); ev.forEach(([n, f, o]) => window.addEventListener(n, f, o)); document.documentElement.addEventListener("mouseleave", lv); }
+  return () => { clearTimeout(t); gsap.ticker.remove(draw); window.removeEventListener("starburst", sb); window.removeEventListener("resize", rs); ev.forEach(([n, f]) => window.removeEventListener(n, f)); document.documentElement.removeEventListener("mouseleave", lv); };
 }

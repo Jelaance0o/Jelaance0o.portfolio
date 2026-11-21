@@ -22,7 +22,7 @@ export default function Hero() {
   }, []);
   return (
     <section id="home" className="hero" ref={ref}>
-      <div className="hero__shape" data-cursor="PLAY" aria-hidden="true"><FloatingElement amp={8} rot={1.5} speed={0.7}><svg viewBox="0 0 200 200"><circle data-d="10" cx="100" cy="100" r="80" /><rect data-d="18" x="40" y="40" width="120" height="120" /><path data-d="26" d="M20 180 180 20" /><circle data-d="38" cx="100" cy="14" r="3.5" fill="#c8ff3d" stroke="none" /></svg></FloatingElement></div>
+      <div className="hero__shape" data-cursor="PLAY" aria-hidden="true"><FloatingElement amp={8} rot={1.5} speed={0.7}><svg viewBox="0 0 200 200"><g data-d="10"><circle cx="100" cy="100" r="80" /></g><rect data-d="18" x="40" y="40" width="120" height="120" /><path data-d="26" d="M20 180 180 20" /></svg></FloatingElement></div>
       <div>
         <p className="label" data-hero="meta">JELAANCE0O — Software Engineer · Frontend / Full-Stack Developer</p>
         <p className="hero__name" data-hero="brand">JEELANCE ROY</p>

@@ -14,7 +14,7 @@ export function initMotion(root) {
 
     // 1) pins first. WORK: pinned horizontal track, released straight into vertical scroll.
     const wk = root.querySelector(".work__hz"), wt = root.querySelector(".work__track");
-    if (wk && wt) {
+    if (desk && wk && wt) {
       const dist = () => wt.scrollWidth - innerWidth + 80;
       const tw = gsap.to(wt, { x: () => -dist(), ease: "none", scrollTrigger: { trigger: wk, pin: true, scrub: 0.6, start: "top top", end: () => "+=" + dist() * (desk ? 0.6 : 1), invalidateOnRefresh: true, anticipatePin: 1 } });
       gsap.to(root.querySelector(".work__bar i"), { scaleX: 1, ease: "none", scrollTrigger: { trigger: wk, start: "top top", end: () => "+=" + dist() * (desk ? 0.6 : 1), scrub: true, invalidateOnRefresh: true } }); // progress bar
@@ -28,8 +28,6 @@ export function initMotion(root) {
       });
     }
 
-    // 2) hero zoom-out: large line-art object shrinks and drifts toward centre as the hero scrolls away
-    gsap.fromTo(".hero__shape svg", { scale: desk ? 1.3 : 1, xPercent: desk ? 10 : 0 }, { scale: 0.85, xPercent: desk ? -15 : 0, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
 
     // 3) reveals, line reveals, progress; mobile card entrance
     initReveals(root, false);

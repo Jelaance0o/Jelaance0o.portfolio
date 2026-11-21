@@ -16,11 +16,11 @@ export function heroIntro(root, reduced) {
 
   const shape = root.querySelector(".hero__shape");
   if (!shape) return;
-  const parts = [...shape.querySelectorAll("[data-d]")], circle = shape.querySelector("circle"), rect = shape.querySelector("rect");
+  const parts = [...shape.querySelectorAll("[data-d]")], circle = shape.querySelector("g"), rect = shape.querySelector("rect");
   gsap.set(parts, { svgOrigin: "100 100" });
-  const pop = () => gsap.timeline()
+  const pop = () => { const b = shape.getBoundingClientRect(); window.dispatchEvent(new CustomEvent("starburst", { detail: { x: b.left + b.width / 2, y: b.top + b.height / 2 } })); return gsap.timeline()
     .to(circle, { scale: 1.2, duration: 0.2, ease: "power2.out" }).to(circle, { scale: 1, duration: 1, ease: "elastic.out(1,0.35)" })
-    .to(rect, { rotation: "+=90", duration: 1.2, ease: "expo.out" }, 0);
+    .to(rect, { rotation: "+=90", duration: 1.2, ease: "expo.out" }, 0); };
   const off = [];
   if (isTouch()) { // tap anywhere in the hero: shape spins and pops
     const tap = () => { gsap.to(shape, { rotation: "+=60", duration: 1.1, ease: "power3.out" }); pop(); };

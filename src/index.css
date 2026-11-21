@@ -295,3 +295,20 @@ main{overflow-x:clip}
   .work__track .project__links .ulink:first-child{background:var(--acc);border-color:var(--acc);color:#000;font-weight:700}
   .work__track .project--soon{border-style:dashed;opacity:.85}
 }
+/* ===== v14: Work = scrollable row on mobile ===== */
+.work__ctrl{display:none}
+.work__track.is-drag{scroll-snap-type:none;cursor:grabbing;user-select:none}
+@media(max-width:899px){
+  .work__hz{min-height:0;display:block;overflow:visible;margin:0;position:relative}
+  .work__track{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pan-y;scrollbar-width:none;width:auto;gap:1rem;margin:2rem calc(var(--pad)*-1) 0;padding:0 var(--pad) 1rem;cursor:grab}
+  .work__track .project,.work__track .project--flip{flex:0 0 84%;min-width:84%;scroll-snap-align:center}
+  .work__bar{display:block;position:static;height:2px;margin:.4rem 0 0;background:var(--line)}
+  .work__bar i{display:block;height:100%;background:var(--acc);transform:scaleX(0);transform-origin:left}
+  .work__hint{display:none}
+  .work__ctrl{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .work__arrows{display:flex;gap:.6rem}
+  .work__arrows button{width:48px;height:48px;border:1px solid var(--line);border-radius:50%;font-size:1.1rem;color:var(--fg);transition:background .3s,color .3s,border-color .3s}
+  .work__arrows button:active{background:var(--acc);color:#000;border-color:var(--acc)}
+}
+/* ===== v15: hero shape back to its original size ===== */
+.hero__shape{max-width:420px}

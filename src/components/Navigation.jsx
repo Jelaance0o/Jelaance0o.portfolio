@@ -51,6 +51,7 @@ export default function Navigation() {
       <a href="#home" onClick={go("Home")} className="nav__logo">JELAANCE0O</a>
       <nav aria-label="Primary" className="nav__links">
         {SHORT.map((n) => <a key={n} href={`#${id(n)}`} onClick={go(n)} className={home && active === id(n) ? "on" : ""}>{n}</a>)}
+        <Link to="/projects" className={pathname.startsWith("/projects") ? "on" : ""}>Projects ↗</Link>
         <ResumeLink />
       </nav>
       <button className="nav__burger" aria-expanded={open} aria-controls="menu" onClick={() => setOpen(!open)}>{open ? "Close" : "Menu"}</button>
