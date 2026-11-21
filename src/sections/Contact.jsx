@@ -6,7 +6,7 @@ export default function Contact() {
   return (
     <section id="contact" className="sec contact">
       <SectionLabel n="05">Contact</SectionLabel>
-      <KineticHeading className="huge" lines={["LET'S", "CREATE", "IMPACT."]} />
+      <KineticHeading className="huge" lines={["LET'S", "BUILD", "SOMETHING GREAT."]} />
       <div className="contact__cols">
         <div data-reveal><p>Have an idea? Need a website? Building something? Let's talk.</p><SocialLinks /></div>
         <div data-reveal><ContactForm /></div>

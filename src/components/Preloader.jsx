@@ -6,8 +6,8 @@ export default function Preloader({ onDone }) {
     const ctx = gsap.context(() => {
       gsap.timeline({ onComplete: onDone })
         .to(bar.current, { scaleX: 1, duration: 0.5, ease: "power2.inOut" })
-        .add(() => { root.current.firstChild.textContent = "CREATING IMPACT"; })
-        .call(() => { lbl.current.textContent = "CREATING IMPACT"; })
+        .add(() => { root.current.firstChild.textContent = "KEEP BUILDING"; })
+        .call(() => { lbl.current.textContent = "KEEP BUILDING"; })
         .to(root.current, { yPercent: -100, duration: 0.8, ease: "power4.inOut" })
         .set(root.current, { display: "none" });
     }, root);

@@ -12,7 +12,7 @@ export default function Work() {
       <KineticHeading lines={["WORK IN", "PROGRESS."]} />
       <Link to="/projects" className="ulink" data-reveal>VIEW FULL ARCHIVE ↗</Link>
       <div className="hz work__hz"><div className="work__track">{shown.map((p, i) => <ProjectRow key={p.id} p={p} index={i} />)}</div></div>
-      <p className="label work__hint" aria-hidden="true">SWIPE →</p>
+      <p className="label work__hint" aria-hidden="true"><span data-work-count>01</span> / {String(shown.length).padStart(2, "0")} — SWIPE →</p>
     </section>
   );
 }

@@ -2,8 +2,6 @@ import { useState } from "react";
 import MagneticButton from "./MagneticButton";
 import { sendMessage } from "../services/web3forms";
 import { socials } from "../data/socials";
-const TYPES = ["Landing page","Business website","React app","Full-stack / SaaS","Something else"];
-const BUDGETS = ["","Not sure yet","Under ₹10,000","₹10,000 – ₹25,000","₹25,000 – ₹50,000","₹50,000+"];
 const mail = socials.email.replace("mailto:", "");
 const validate = (v) => {
   const e = {};
@@ -19,7 +17,7 @@ function Field({ k, label, err, children }) {
   </div>);
 }
 export default function ContactForm() {
-  const [v, setV] = useState({ name: "", email: "", projectType: TYPES[0], budget: "", message: "" });
+  const [v, setV] = useState({ name: "", email: "", message: "" });
   const [hp, setHp] = useState(false); // honeypot (Web3Forms "botcheck")
   const [err, setErr] = useState({});
   const [state, setState] = useState("idle"); // idle | loading | success | error
@@ -38,8 +36,6 @@ export default function ContactForm() {
     <form onSubmit={submit} noValidate className="form">
       <Field k="name" label="Name" err={err.name}><input autoComplete="name" {...aria("name")} /></Field>
       <Field k="email" label="Email" err={err.email}><input type="email" autoComplete="email" {...aria("email")} /></Field>
-      <Field k="projectType" label="Project type"><select {...aria("projectType")}>{TYPES.map((t) => <option key={t}>{t}</option>)}</select></Field>
-      <Field k="budget" label="Budget (optional)"><select {...aria("budget")}>{BUDGETS.map((t) => <option key={t} value={t}>{t || "Prefer not to say"}</option>)}</select></Field>
       <Field k="message" label="Message" err={err.message}><textarea rows="4" {...aria("message")} /></Field>
       <input type="checkbox" className="sr-only" name="botcheck" tabIndex={-1} autoComplete="off" aria-hidden="true" checked={hp} onChange={(e) => setHp(e.target.checked)} />
       {state === "error" && <div role="alert" className="form__fail"><b>COULDN'T SEND</b><p>{note} Email me at <a className="ulink" href={socials.email}>{mail}</a>.</p></div>}
