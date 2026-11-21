@@ -30,7 +30,7 @@ export default function Hero() {
       <h1 aria-label="Building digital experiences.">{L.map((w) => <span className="hero__line" key={w} aria-hidden="true"><span>{w}</span></span>)}</h1>
       <span className="hero__cue" aria-hidden="true">SCROLL</span>
       <div className="hero__foot">
-        <p data-hero="sub">Developer focused on modern web applications, interactive interfaces and creative digital experiences.</p>
+        <p data-hero="sub">Full-stack developer building SaaS products, REST APIs and production-ready web applications — with an eye for interaction and design.</p>
         <p className="avail" data-hero="cta"><i className="pulse" /> AVAILABLE FOR OPPORTUNITIES</p>
         <div className="hero__links" data-hero="cta"><ResumeLink /></div>
       </div>

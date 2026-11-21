@@ -17,6 +17,7 @@ export function initMotion(root) {
     if (wk && wt) {
       const dist = () => wt.scrollWidth - innerWidth + 80;
       const tw = gsap.to(wt, { x: () => -dist(), ease: "none", scrollTrigger: { trigger: wk, pin: true, scrub: 0.6, start: "top top", end: () => "+=" + dist() * (desk ? 0.6 : 1), invalidateOnRefresh: true, anticipatePin: 1 } });
+      gsap.to(root.querySelector(".work__bar i"), { scaleX: 1, ease: "none", scrollTrigger: { trigger: wk, start: "top top", end: () => "+=" + dist() * (desk ? 0.6 : 1), scrub: true, invalidateOnRefresh: true } }); // progress bar
       const DIR = [{ x: 90, rotation: 3 }, { x: -90, rotation: -3 }, { x: 50, rotation: 2 }];
       q(".work__track .project").forEach((p, i) => { // cards fly in from different directions and settle
         const from = { opacity: 0, scale: 0.85, y: 100, ...DIR[i % 3] }, to = { opacity: 1, scale: 1, y: 0, x: 0, rotation: 0 };

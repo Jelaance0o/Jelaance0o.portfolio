@@ -274,3 +274,24 @@ main{overflow-x:clip}
 .hero__shape{pointer-events:auto}
 .hero__shape svg{transition:stroke .5s}
 .hero__shape:hover svg{stroke:var(--acc)}
+/* ===== v13: nav invert effect restored; work cards (mobile) ===== */
+.nav{background:none;mix-blend-mode:difference}
+.work__bar{display:none}
+@media(min-width:900px) and (prefers-reduced-motion:no-preference),(max-width:899px) and (prefers-reduced-motion:no-preference){
+  .work__hz{position:relative}
+  .work__bar{display:block;position:absolute;left:var(--pad);right:var(--pad);bottom:1.4rem;height:2px;background:var(--line)}
+  .work__bar i{display:block;height:100%;background:var(--acc);transform:scaleX(0);transform-origin:left}
+}
+@media(max-width:899px){
+  .work__track .project,.work__track .project--flip{gap:0;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.035)}
+  .work__track .project__visual{aspect-ratio:16/11;border:0;border-bottom:1px solid var(--line);box-shadow:none;border-radius:0}
+  .work__track .project__plate span{font-size:30vw}
+  .work__track .project__info{padding:1.2rem 1.2rem 1.4rem}
+  .work__track .project h3{font-size:clamp(2rem,10vw,3rem);margin:.5rem 0}
+  .work__track .project__desc{margin-bottom:1.1rem;font-size:.95rem}
+  .work__track .project__links{display:grid;gap:.6rem}
+  .work__track .project__links .ulink{display:flex;justify-content:space-between;align-items:center;padding:.95rem 1.1rem;border:1px solid var(--line);border-radius:12px;font-size:.78rem;letter-spacing:.1em}
+  .work__track .project__links .ulink::after{display:none}
+  .work__track .project__links .ulink:first-child{background:var(--acc);border-color:var(--acc);color:#000;font-weight:700}
+  .work__track .project--soon{border-style:dashed;opacity:.85}
+}
